@@ -1,0 +1,26 @@
+# Stope the port 10000
+# net stop winnat
+
+source : https://hshirodkar.medium.com/apache-hive-on-docker-4d7280ac6f8e
+
+cd Hive
+
+# run the docker container :
+docker-compose up
+
+# run the hive server :
+docker exec -it hive-server /bin/bash
+
+# run hive :
+hive 
+
+# show all database in hive :
+show databases;
+# show table in hive :
+show tables;
+
+# select from table in hive :
+select * from customers_data;
+
+# drop table in hive :
+drop table table_name

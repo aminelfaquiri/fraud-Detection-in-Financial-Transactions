@@ -1,11 +1,18 @@
 from flask import Flask,jsonify
-from data_generator import generate_data
+import json
 
 
 app = Flask(__name__)
 
-transactions, customers, external_data = generate_data(1000, 100)
+# read data from json file :
+def read_json_file(filename) :
+    with open(filename, 'r') as file:
+        data = json.load(file)
+    return data
 
+transactions = read_json_file("Data_json/transactions_data.json")
+customers = read_json_file("Data_json/customers_data.json")
+external_data = read_json_file("Data_json/external_data.json")
 
 # create app route :
 @app.route('/api/transactions')

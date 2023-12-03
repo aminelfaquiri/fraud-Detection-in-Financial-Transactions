@@ -8,20 +8,26 @@ La société "FinTech Innovations" est actuellement confrontée à un défi croi
 ## Objectif du Projet
 
 En tant que développeur Data, l'objectif global demeure la création d'une API nommée `trans_api.py` et la mise en œuvre d'un système de détection de fraude capable d'identifier rapidement les activités suspectes tout en réduisant au maximum les alertes erronées.
+![image](https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/8505e42c-fe97-4d28-ba41-6ddeb5e62402)
 
 ## Développement des API
 
 ### API des Données de Transaction
 
 Dans le script `trans_api.py`, un point d'accès `/api/transactions` a été établi pour accéder aux données de transactions. Celles-ci incluent l'ID de transaction, la date et l'heure, le montant, la devise, les détails du commerçant, l'ID du client et le type de transaction.
+<img width="828" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/e671d396-a555-4435-964e-8c6f27ef1ab8">
 
 ### API des Données Client
 
 Un deuxième point d'accès, `/api/customers`, a été développé dans `trans_api.py` pour faciliter l'accès aux données clients, comprenant l'ID client, l'historique des comptes, les données démographiques et les modèles comportementaux.
+<img width="923" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/56bc5b55-93b1-4605-984a-15431aa2736d">
+
 
 ### API des Données Externes
 
 Une troisième API, `/api/externalData`, est également incluse dans `trans_api.py` pour récupérer des données externes, telles que les informations de liste noire, les scores de crédit et les rapports de fraude.
+<img width="926" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/fa34ec26-d336-49a2-9cd0-21f4058e1bd9">
+
 
 ## Collecte et Intégration des Données
 
@@ -84,4 +90,44 @@ La mise en œuvre technique du système de détection de fraude repose sur l'uti
 Les résultats de la détection de fraude sont affichés en temps réel et, le cas échéant, enregistrés dans un fichier CSV pour une analyse ultérieure. Ce suivi permet une évaluation continue de l'efficacité du système et la possibilité d'ajuster les critères de détection en fonction des nouvelles tendances de fraude identifiées.
 <img width="733" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/561058d2-b156-43fd-bd44-91bc4381c730">
 
+## DAG Apache Airflow pour l'Exécution Automatisée
 
+### Aperçu du DAG
+
+Afin de rationaliser et automatiser le processus de détection de fraude, un DAG Apache Airflow nommé `execute_scripts_dag` a été implémenté. Ce DAG orchestre l'exécution séquentielle de scripts Python critiques à des intervalles réguliers, assurant une détection de fraude opportune et efficace.
+
+### Résumé des Tâches
+
+1. **Tâche de Création de Connexion**
+   - Établit les connexions nécessaires pour la récupération des données.
+
+2. **Tâche d'Insertion des Transactions**
+   - Insère les données de transaction dans le système pour analyse.
+
+3. **Tâche d'Insertion des Clients**
+   - Intègre les données clients dans le système de détection de fraude.
+
+4. **Tâche d'Insertion des Données Externes**
+   - Collecte et intègre des données externes pour une analyse approfondie.
+
+5. **Tâche d'Insertion dans la Liste Noire**
+   - Incorpore les données d'une liste noire pour identifier les entités suspectes.
+
+6. **Tâche de Détection de Fraude**
+   - Exécute des algorithmes de détection de fraude sur les données intégrées.
+
+### Dépendances des Tâches
+
+- Les dépendances des tâches assurent un flux d'exécution logique, en commençant par les tâches de préparation des données avant de passer à la phase réelle de détection de fraude.
+
+### Planification
+
+Le DAG est planifié pour s'exécuter à intervalles réguliers (toutes les 5 minutes), garantissant une exécution cohérente et opportune du pipeline de détection de fraude.
+
+### Objectif
+
+Ce DAG automatisé améliore l'efficacité du système de détection de fraude en automatisant la récupération, l'intégration et l'analyse des données. Il assure une approche proactive pour identifier les activités potentiellement frauduleuses dans les transactions financières.
+<img width="612" alt="image (1)" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/408223bd-db59-4b39-afac-563cfb60f4b7">
+
+## Conclusion :
+le projet de détection de fraude dans les transactions financières pour "FinTech Innovations" représente une approche holistique allant de la collecte de données à la détection en temps réel, intégrant des API robustes, une gestion efficace des données avec Hive, et un système de détection basé sur des règles avancées. L'introduction d'Apache Airflow, à travers le DAG execute_scripts_dag, automatise le flux de travail, assurant une exécution régulière. L'ensemble du projet vise à minimiser les risques de fraudes, à renforcer la confiance des clients, et à offrir une solution adaptative dans le paysage financier en constante évolution.

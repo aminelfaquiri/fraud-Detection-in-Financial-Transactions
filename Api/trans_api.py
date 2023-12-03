@@ -10,9 +10,9 @@ def read_json_file(filename) :
         data = json.load(file)
     return data
 
-transactions = read_json_file("Data_json/transactions_data.json")
-customers = read_json_file("Data_json/customers_data.json")
-external_data = read_json_file("Data_json/external_data.json")
+transactions = read_json_file("Api/Data_json/transactions_data.json")
+customers = read_json_file("Api/Data_json/customers_data.json")
+external_data = read_json_file("Api/Data_json/external_data.json")
 
 # create app route :
 @app.route('/api/transactions')

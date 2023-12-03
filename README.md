@@ -46,18 +46,26 @@ Le script `get_api_data.py` a été développé pour collecter les données depu
 ### Script : `insert_into_transaction.py`
 
 Ce script insère les données de transaction collectées dans la table Hive dédiée, en utilisant les spécifications de conception établies précédemment. Les champs incluent l'ID de transaction, la date et l'heure, le montant, la devise, les détails du commerçant, l'ID du client, et le type de transaction.
+<img width="811" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/b9122725-94a9-496b-ab39-b424cf88acf9">
+
 
 ### Script : `insert_into_customers.py`
 
 Ce script est conçu pour insérer les données clients dans la table Hive correspondante. Les informations incluses couvrent l'ID client, l'historique des comptes, les données démographiques et les modèles comportementaux.
+<img width="943" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/edf6c1fa-9d20-4ea3-acfa-8bdb432fc900">
+
 
 ### Script : `insert_external_data.py`
 
 Pour les données externes provenant de l'API, le script `insert_external_data.py` a été développé. Il assure l'insertion de ces informations dans la table Hive dédiée, couvrant des éléments tels que les informations de liste noire, les scores de crédit, et les rapports de fraude.
+<img width="256" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/b15b7d26-1c8f-4918-bc9d-21de39f81436">
+
 
 ### Script : `insert_into_blacklist.py`
 
 Enfin, le script `insert_into_blacklist.py` est spécifiquement conçu pour l'insertion de données dans la table Hive dédiée à la liste noire.
+<img width="351" alt="image" src="https://github.com/aminelfaquiri/fraud-Detection-in-Financial-Transactions/assets/81482544/dbf52474-b259-439f-ba3f-6ce9381e3d64">
+
 
 Ces scripts garantissent que les données collectées sont intégrées de manière organisée et efficace dans les tables Hive correspondantes, fournissant ainsi une base solide pour le développement ultérieur du système de détection de fraude basé sur les règles.
 

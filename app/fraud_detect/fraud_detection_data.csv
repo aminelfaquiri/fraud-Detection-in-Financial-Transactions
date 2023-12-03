@@ -1,0 +1,11 @@
+transaction_data.amount,transaction_data.currency,transaction_data.customer_id,transaction_data.date_time,transaction_data.location,transaction_data.merchant_details,transaction_data.transaction_id,transaction_data.transaction_type,transaction_data.day
+318.74303945647324,EUR,C077,2020-06-10T13:03:35,City7,Merchant96,T00009,purchase,10
+481.01639287999694,GBP,C016,2021-07-11T06:20:45,City4,Merchant95,T00001,withdrawal,11
+6736.59015813065,EUR,C076,2021-02-15T14:35:28,City9,Merchant70,T00007,withdrawal,15
+747.8160385757141,GBP,C010,2021-11-16T09:43:39,City10,Merchant38,T00003,purchase,16
+937.47018182448,GBP,C060,2022-12-17T03:25:07,City10,Merchant10,T00000,withdrawal,17
+654.9933396481104,EUR,C095,2021-10-21T07:12:27,City5,Merchant26,T00006,purchase,21
+383.6780006655691,EUR,C033,2020-10-24T23:48:28,City8,Merchant47,T00002,purchase,24
+7643.79245355275,USD,C049,2022-11-28T18:08:52,City6,Merchant2,T00008,purchase,28
+2917.9774550578627,USD,C024,2021-04-29T07:20:29,City7,Merchant10,T00004,purchase,29
+611.2489334749181,GBP,C084,2020-01-08T15:17:40,City7,Merchant65,T00005,purchase,8

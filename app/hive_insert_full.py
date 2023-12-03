@@ -3,7 +3,7 @@ from pyhive import hive
 from thrift import Thrift
 import thrift_sasl
 from datetime import datetime
-
+from decimal import Decimal
 
 ########################### create Conection  ########################
 # Connection parameters :
@@ -34,12 +34,7 @@ use_database_query = f"USE {database_name}"
 cursor.execute(use_database_query)
 print("use the database")
 
-# Hive settings :
-# set_dynamic_partition_query = "SET hive.exec.dynamic.partition.mode=nonstrict"
-# cursor.execute(set_dynamic_partition_query)
-######################################################################
 # retrieve data from API :
-
 def get_data_api(api_url) :
 
     try:
@@ -59,7 +54,7 @@ def get_data_api(api_url) :
         print(f"Error: {e}")
 
 ################## insert into Transaction #######################
-def insert_into_transaction() : 
+def insert_into_transaction():
     api_url = 'http://localhost:5000/api/transactions'
     transaction_data = get_data_api(api_url)
 
@@ -87,35 +82,37 @@ def insert_into_transaction() :
     print("Table is created")
 
     # Insert data into the table :
-    insert_query = f"""
-    INSERT INTO {table_name}
+    insert_query = """
+    INSERT INTO transaction_data
     PARTITION (day=%s)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     """
+
     i = 0
-    for record in transaction_data :
+    for record in transaction_data[:10]:
         # Calculate hour and day values from date_time
         date_time = datetime.strptime(record['date_time'], '%Y-%m-%dT%H:%M:%S')
-        day = str(date_time.day)
+        day = date_time.day
 
         cursor.execute(insert_query, (
+            str(day),
             record['amount'],
-            record['currency'],
-            record['customer_id'],
-            record['date_time'],
-            record['location'],
-            record['merchant_details'],
-            record['transaction_id'],
-            record['transaction_type'],
-            day
+            str(record['currency']),
+            str(record['customer_id']),
+            str(record['date_time']),
+            str(record['location']),
+            str(record['merchant_details']),
+            str(record['transaction_id']),
+            str(record['transaction_type']),
         ))
-
-        print('transaction inserted ',i, '/', len(transaction_data))
-        i +=1
+        # conn.commit()
+        print('transaction inserted ', i, '/', len(transaction_data),datetime.now())
+        i += 1
+    # print time now after insertion :
 
     print("Insertion in transaction_data is done")
 
-insert_into_transaction()
+# insert_into_transaction()
 
 ################## insert into Customers #######################
 def insert_into_customers() :
@@ -205,12 +202,12 @@ def insert_into_externale() :
             fraud_reports[i]
         ))
 
-        print('customers_data inserted ',i, '/', len(fraud_reports))
+        print('externale data inserted ',i, '/', len(fraud_reports))
         i +=1
 
     print("externale data is inserted")
 
-# insert_into_externale()
+insert_into_externale()
 
 ########################## Insert into blacklist table ###########################
 def insert_into_blacklist() :
@@ -239,7 +236,7 @@ def insert_into_blacklist() :
 
     print("blacklist data is inserted")
 
-# insert_into_blacklist()
+insert_into_blacklist()
 
 #########################################################################
 # Commit the changes and close connection :
